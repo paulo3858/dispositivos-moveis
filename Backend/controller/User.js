@@ -1,25 +1,32 @@
 const User = require('../model/User');
 
 module.exports = {
-    index(req, res){
-        return res.json({mensagem : "Rota de todos os usuarios"})
+    async index(req, res){ // busca todos os registros
+        let users = await User.find()
+        return res.json(users)
     },
 
-    async store(req, res){
+    async store(req, res){ //grava o usuario no banco
         const {name, email, age, password} = req.body;
         const user = await User.create({name, email, age, password});
         return res.json(user);
     },
 
-    update(req,res){
-        var id = req.query.id;
-        var produto = req.body.produto;
-        return res.json({mensagem : 'Atualizar o produto ' + id + ' com os dados do post ' + produto.nome})
+    async update(req,res){ //edita
+        var id = req.query.id; //pega o id na url
+        let user = await User.findById(id); //busca o user pelo id
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.age = req.body.age;
+        user.password = req.body.password;
+        user = await User.update(user); //faz o update
+        return res.json({mensagem : 'Atualizar o usuario ' + id + ' com os dados do post ' + user.name});
     },
 
-    delete(req, res){
+    async delete(req, res){
         var id = req.query.id;
-        var produto = req.body.produto;
-        return res.json({mensagem : 'Deleta o produto ' + id})
+        let user = await User.findById(id);
+        await User.deleteOne(user);
+        return res.json({mensagem : 'Deleta o usuario ' + id});
     }
 }
