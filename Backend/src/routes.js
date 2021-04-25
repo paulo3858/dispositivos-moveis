@@ -3,6 +3,7 @@ const UserController = require('../controller/User');
 const MedicoController = require('../controller/Medico');
 const ClinicaController = require('../controller/Clinica');
 const EspecialidadeController = require('../controller/Especialidade');
+const MedicoClinicaController = require('../controller/MedicoClinica');
 const routes = express.Router();
 
 //GET => Usado somente para buscar informação (no maximo, mandar alguma query) - read
@@ -34,6 +35,11 @@ routes.get('/especialidade', EspecialidadeController.index);
 routes.post('/especialidade', EspecialidadeController.store);
 routes.put('/especialidade', EspecialidadeController.update);
 routes.delete('/especialidade', EspecialidadeController.delete);
+
+routes.get('/medico-clinica', MedicoClinicaController.index);
+routes.post('/medico-clinica', MedicoClinicaController.store);
+routes.put('/medico-clinica', MedicoClinicaController.update);
+routes.delete('/medico-clinica', MedicoClinicaController.delete);
 
 
 
