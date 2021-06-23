@@ -12,6 +12,9 @@ module.exports = {
         return res.json(clinica);
     },
 
+
+
+    
     async update(req,res){ //edita
         var id = req.query.id; //pega o id na url
         let clinica = await Clinica.findById(id); //busca a clinica pelo id

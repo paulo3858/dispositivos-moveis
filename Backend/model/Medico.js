@@ -11,7 +11,7 @@ const MedicoSchema = new mongoose.Schema({
     site : String,
     criado_em : Number,
     atualizado_em : Number,
-    status : Number
+    status : Boolean
 });
 
 module.exports = mongoose.model('Medico', MedicoSchema);
