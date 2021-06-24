@@ -14,3 +14,5 @@ app.use(express.json());
 app.use(routes);
 
 app.listen(3000); //definindo a porta
+
+console.log("Servidor rodando no end: http://localhost:3000");
